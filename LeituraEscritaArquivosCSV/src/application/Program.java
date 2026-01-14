@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import entities.OrderItem;
 import entities.Product;
@@ -15,6 +16,7 @@ import entities.Product;
 public class Program {
 	
 	public static void main (String[] args) {
+		Locale.setDefault(Locale.US);
 		
 		String sourcePath = "C:\\Users\\victor.couto\\eclipse-workspace2\\LeituraEscritaArquivosCSV\\source.csv";
 		String summaryPath = "C:\\Users\\victor.couto\\eclipse-workspace2\\LeituraEscritaArquivosCSV\\out\\summary.csv";
