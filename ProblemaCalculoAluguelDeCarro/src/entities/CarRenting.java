@@ -68,7 +68,7 @@ public class CarRenting {
 	
 	public Double basicPayment() {
 		double totalHour = (double) totalTime().toMinutes() / 60;
-		double totalDays = (double) totalTime().toMinutes() / (60 * 60);
+		double totalDays = (double) totalTime().toMinutes() / (60 * 24);
 		
 		if (totalHour <= hourlyRentMaxTime) {
 			return Math.ceil(totalHour) * priceHour;
