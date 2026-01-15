@@ -33,9 +33,9 @@ public class Program {
 				String[] lineData = line.split(",");
 				
 				name = lineData[0];
-				price = Double.valueOf(lineData[1]);
-				quantity = Integer.valueOf(lineData[2]);
-
+				price = Double.parseDouble(lineData[1]); 
+				quantity = Integer.parseInt(lineData[2]);
+				
 				items.add(new OrderItem(quantity, price, new Product(name, price)));
 				
 				line = br.readLine();
