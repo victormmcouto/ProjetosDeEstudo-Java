@@ -1,5 +1,6 @@
 package entities;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -16,7 +17,12 @@ public class CarRenting {
 	public CarRenting() {
 	}
 
-	public CarRenting(Car car, LocalDateTime pickupTime, LocalDateTime returnTime, Double priceHour, Double priceDay) {
+	public CarRenting(Car car, LocalDateTime pickupTime, 
+			          LocalDateTime returnTime, Double priceHour, Double priceDay) throws InvalidAlgorithmParameterException {
+		if (pickupTime.isAfter(returnTime)) {
+			throw new InvalidAlgorithmParameterException("Return date greater than pickup date!");
+		}
+		
 		this.car = car;
 		this.pickupTime = pickupTime;
 		this.returnTime = returnTime;
