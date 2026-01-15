@@ -16,7 +16,7 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		
 		System.out.println("Enter rental data");
 		System.out.print("Car model: ");
