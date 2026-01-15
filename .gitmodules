@@ -1,0 +1,3 @@
+[submodule "Arquivos"]
+    path = Arquivos
+    url = git@github.com:victormmcouto/ManuseioDeArquivosTexto-java.git
