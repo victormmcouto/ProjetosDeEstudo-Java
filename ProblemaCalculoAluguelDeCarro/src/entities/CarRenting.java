@@ -9,7 +9,9 @@ public class CarRenting {
 	public LocalDateTime pickupTime, returnTime;
 	public Double priceHour, priceDay;
 	
-	public static final Double brazilTax = 0.2;
+	public static final double brazilTaxUpTo100 = 0.2;
+	public static final double brazilTaxAbove100 = 0.15;
+	public static final int hourlyRentMaxTime = 12;
 	
 	public CarRenting() {
 	}
@@ -58,15 +60,33 @@ public class CarRenting {
 		return Duration.between(returnTime, pickupTime);
 	}
 	
-	/*public Double basicPayment() {
-		return totalTime().;
+	public Double basicPayment() {
+		double totalHour = (double) totalTime().toMinutes() / 60;
+		double totalDays = (double) totalTime().toMinutes() / 60 * 60;
+		
+		if (totalHour <= hourlyRentMaxTime) {
+			return Math.ceil(totalHour) * priceHour;
+		} else {
+			return Math.ceil(totalDays) * priceDay;
+		}
 	}
 	
-	/*public Double getTotalTax() {
-		
+	public Double totalTax() {
+		if (basicPayment() <= 100) {
+			return basicPayment() * brazilTaxUpTo100;
+		} else {
+			return basicPayment() * brazilTaxAbove100;
+		}
+	}
+	
+	public Double totalPayment() {
+		return basicPayment() + totalTax();
 	}
 	
 	public String invoice() {
-		
-	}*/
+		return "INVOICE:\n" +
+			   "Basic payment: " + String.format("%.2f", basicPayment()) +
+			   "Tax: " + String.format("%.2f", totalTax()) +
+			   "Total payment: " + String.format("%.2f", totalPayment());
+	}
 }
