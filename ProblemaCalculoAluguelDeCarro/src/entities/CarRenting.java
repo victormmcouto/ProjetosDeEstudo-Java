@@ -63,12 +63,12 @@ public class CarRenting {
 	}
 	
 	public Duration totalTime() {
-		return Duration.between(returnTime, pickupTime);
+		return Duration.between(pickupTime, returnTime);
 	}
 	
 	public Double basicPayment() {
 		double totalHour = (double) totalTime().toMinutes() / 60;
-		double totalDays = (double) totalTime().toMinutes() / 60 * 60;
+		double totalDays = (double) totalTime().toMinutes() / (60 * 60);
 		
 		if (totalHour <= hourlyRentMaxTime) {
 			return Math.ceil(totalHour) * priceHour;
@@ -91,8 +91,8 @@ public class CarRenting {
 	
 	public String invoice() {
 		return "INVOICE:\n" +
-			   "Basic payment: " + String.format("%.2f", basicPayment()) +
-			   "Tax: " + String.format("%.2f", totalTax()) +
+			   "Basic payment: " + String.format("%.2f", basicPayment()) + "\n" +
+			   "Tax: " + String.format("%.2f", totalTax()) + "\n" +
 			   "Total payment: " + String.format("%.2f", totalPayment());
 	}
 }

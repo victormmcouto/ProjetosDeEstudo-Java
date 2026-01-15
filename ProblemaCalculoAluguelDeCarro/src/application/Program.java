@@ -27,7 +27,7 @@ public class Program {
 		LocalDateTime returnTime = LocalDateTime.parse(sc.nextLine(), format);
 		System.out.print("Enter price per hour: ");
 		double priceHour = sc.nextDouble();
-		System.out.print("Enter price per dayr: ");
+		System.out.print("Enter price per day: ");
 		double priceDay = sc.nextDouble();
 		
 		try {
