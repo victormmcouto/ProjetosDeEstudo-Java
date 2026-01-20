@@ -1,13 +1,14 @@
 package application;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entities.Car;
-import entities.CarRenting;
+import model.entities.Car;
+import model.entities.CarRental;
+import model.services.BrazilTaxService;
+import model.services.RentalService;
 
 public class Program {
 
@@ -30,14 +31,16 @@ public class Program {
 		System.out.print("Enter price per day: ");
 		double priceDay = sc.nextDouble();
 		
-		try {
-			CarRenting carRenting = new CarRenting(new Car(model), pickupTime, returnTime,
-					                               priceHour, priceDay);
-			
-			System.out.println(carRenting.invoice());
-		} catch (InvalidAlgorithmParameterException e) {
-			System.out.println("Error: " + e.getMessage());
-		}
+		CarRental carRental = new CarRental(pickupTime, returnTime, new Car(model));
+		
+		RentalService rentalService = new RentalService(priceHour, priceDay, new BrazilTaxService());
+		
+		rentalService.processInvoice(carRental);
+		
+		System.out.println("INVOICE:");
+		System.out.printf("Basic payment: %.2f\n", carRental.getInvoice().getBasicPayment());
+		System.out.printf("Tax: %.2f\n", carRental.getInvoice().getTax());
+		System.out.printf("Total Payment: %.2f", carRental.getInvoice().getTotalPayment());
 		
 		sc.close();
 	}
