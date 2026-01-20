@@ -17,7 +17,7 @@ public class ContractService {
 	public void processContract(Contract contract, Integer months) {
 		double installmentAmount = 0.0;
 		double baseAmount = contract.getTotalValue() / months;
-		LocalDate nextDate = contract.getDate().plus(Period.ofDays(30));		
+		LocalDate nextDate = contract.getDate().plus(Period.ofMonths(1));		
 		
 		for (int i=0; i<months; i++) {
 			installmentAmount = baseAmount + onlinePaymentService.interest(baseAmount, i);
@@ -25,7 +25,7 @@ public class ContractService {
 			
 			contract.getInstallments().add(new Installment(nextDate, installmentAmount));
 			
-			nextDate = nextDate.plus(Period.ofDays(30));
+			nextDate = nextDate.plus(Period.ofMonths(1));
 		}
 	}
 }
