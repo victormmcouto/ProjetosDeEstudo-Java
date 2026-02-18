@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,6 +36,15 @@ public class Program {
 			System.out.println("Errror: " + e.getMessage());
 		} catch (IllegalStateException e) {
 			System.out.println("Error: " + e.getMessage());
+		}
+		
+		List<Integer> myInts = Arrays.asList(5, 2, 3);
+		printList(myInts);
+	}
+	
+	public static void printList(List<?> list) {
+		for (Object obj : list) {
+			System.out.println(obj);
 		}
 	}
 }
